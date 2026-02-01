@@ -1,0 +1,6 @@
+torch
+streamlit
+matplotlib
+numpy
+pandas
+python-dotenv
