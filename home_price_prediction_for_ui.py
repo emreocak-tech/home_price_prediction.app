@@ -1,4 +1,3 @@
-### python -m streamlit run home_price_prediction_for_ui.py
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -25,9 +24,11 @@ if check_box1:
     floors_total=st.slider("Total Floors",min_value=1,max_value=15,help="You can slide the function")
     living_area_tuhaf=st.slider("Living Room Area",min_value=20,max_value=70,help="You can slide the function")
     if total_area and rooms and floors_total and living_area_tuhaf:
-        tensor = torch.tensor(np.column_stack([total_area, rooms, floors_total, living_area_tuhaf]),dtype=torch.float32)
-        tensor = (tensor - norm_min) / (norm_maks - norm_min)
-        result = model.forward(tensor)
-        result = result * (price_maks - price_min) + price_min
-        st.info(f"Our prediction is {result.item()}")
-        st.success("Thank you for using to me :)")
+        button=st.button("Make a Prediction")
+        if button:
+            tensor = torch.tensor(np.column_stack([total_area, rooms, floors_total, living_area_tuhaf]),dtype=torch.float32)
+            tensor = (tensor - norm_min) / (norm_maks - norm_min)
+            result = model.forward(tensor)
+            result = result * (price_maks - price_min) + price_min
+            st.info(f"Our prediction is {result.item()}")
+            st.success("Thank you for using to me :)")
