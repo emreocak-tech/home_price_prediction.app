@@ -32,3 +32,4 @@ if check_box1:
             result = result * (price_maks - price_min) + price_min
             st.info(f"Our prediction is {result.item()}")
             st.success("Thank you for using to me :)")
+
